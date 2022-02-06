@@ -5,7 +5,7 @@ import { orderActions } from "../store/orderSlice";
 import { counterActions2 } from "../store/index2";
 import Foods from "../The foods/foods";
 import { Link } from "react-router-dom";
-
+import { LeftSquareOutlined } from "@ant-design/icons";
 
 let isFirst = true;
 function Orderlist() {
@@ -14,7 +14,7 @@ function Orderlist() {
   const dispatch = useDispatch();
 
   const onAdd = (txt) => {
-    dispatch(orderActions.addTodo(txt));
+    dispatch(orderActions.addorder(txt));
   };
 
   const onRemove = (id) => {
@@ -56,35 +56,37 @@ const increseBy = () => {
 
 
 
-
-
-
-
   return (
-    <div className="App">
-<Link to="/">back</Link>
+    <div className="">
 
+<header className="App-header">
+        <div className="home"><Link to="/">
+          <h1 style={{margin:"0px"}}>
+            <LeftSquareOutlined style={{color: "#ffffff",margin:"60px 30px 0px 30px"}}/>
+          </h1>
+          </Link>
+          </div>
+      </header>
       <div>
         {orders.map((order) => {
           return (
             <div
-              key={order.id} style={{margin: "10px",background: "grey",borderRadius: "15px",display: "flex",flexDirection: "row",alignItems: "center",justifyContent: "space-between",padding: "10px",}}
+              key={order.id} style={{margin: "10px",background: "#68b6ff",borderRadius: "10px",display: "flex",flexDirection: "row",alignItems: "center",justifyContent: "space-between",padding: "10px",}}
             >
               <h2>{order.image}</h2>
-              {/* <img className="images"  src={order.image}/> */}
-              <button onClick={() => {onRemove(order.id);}}>delete</button>
-              <button onClick={() => {onAdd(order.text);}}>Add todo</button>
-
+              
            <div>
               
-         <h1>price{counter}</h1>
-          <button onClick={increment}>increment</button>
-          <button onClick={increseBy}>increse by 10</button>
-
+         <p>Quantity-({counter})</p>
+          <button onClick={increment}>Increse</button>
+          <button onClick={increseBy}>Decrese</button>
+          <button onClick={() => {onRemove(order.id);}}>Delete</button>
           </div>
           </div>
           );})}
            </div>
+           <p>Total price</p>
+           <p> {counter} ID</p>
            </div>
   );
 }

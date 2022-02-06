@@ -3,25 +3,23 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { orderActions } from "../store/orderSlice";
 import Foods from "../The foods/foods";
-import { Link } from "react-router-dom";
+import { Link ,NavLink} from "react-router-dom";
+import { FileProtectOutlined } from "@ant-design/icons";
 
 let isFirst = true;
-function Home() {
+const Home=()=> {
 
     
 
      const orders = useSelector((state) => state.order.orders);
   const dispatch = useDispatch();
 
-  const [inputText, setInputText] = useState("");
+  <colgroup></colgroup>
 
   const onAdd = (txt) => {
-    dispatch(orderActions.addTodo(txt));
+    dispatch(orderActions.addorder(txt));
   };
-  const onInput = (e) => {
-    setInputText(e.target.value);
-  };
-
+  
 
   useEffect(() => {
     if (!isFirst) {
@@ -36,21 +34,37 @@ function Home() {
   }, [orders]);
 
 
- 
+const [b,b2]=useState(true)
+ const added=()=>{
+    b2(prev => !prev)}
+
 
   return (
-    <div className="App">
-      <Link to="/orderlist">orderlist</Link>
+    <div className="">
+      <header className="App-header">
+        <h1 style={{margin:"0px",width:""}}>Wellcome to our mini-restaurant </h1>
+        <div className="orderlist"><Link to="/orderlist">
+          
+          <h1 style={{margin:"0px 30px 0px 0px"}}>
+            <FileProtectOutlined style={{color: "#ffffff"}}/>
+          </h1>
+          </Link> <p style={{margin:"0px 30px 0px 0px"}}>Orderlist</p>
+          </div>
+       
+      </header>
  
       <div className="all_foods">{Foods.map((food) => {
           return (
             <div className="food_card">
             
               <img className="images"  src={food.image}/>
-              <p>{food.name}</p>
-              <p>{food.category}</p>
-              <p>{food.price}</p>
-              <button onClick={() => {onAdd(food.image);}}>Add todo</button>
+              <h3>{food.name}</h3>
+              {/* <p>{food.category}</p> */}
+              <p>{food.price} ID</p>
+              <button onClick={() => {onAdd(food.name);added();}}>
+                {b?<b>Add to list</b>:<b style={{color:"blue"}}>Added</b>}
+              </button>
+              
             </div>);})}
             
           </div>
@@ -60,5 +74,3 @@ function Home() {
 }
 
 export default Home;
-
-
