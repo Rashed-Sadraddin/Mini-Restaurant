@@ -1,0 +1,12 @@
+.header {
+    height: 100%;
+    padding: 20px;
+    background: rgb(255, 255, 255);
+    width: 100%;
+    transition: all 1.5s;
+}
+
+.dark {
+    background: rgb(51, 51, 51);
+    transition: all 0.8s;
+}

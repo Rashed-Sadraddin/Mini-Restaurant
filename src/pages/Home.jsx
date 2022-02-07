@@ -6,6 +6,7 @@ import Foods from "../The foods/foods";
 import { Link ,NavLink} from "react-router-dom";
 import { FileProtectOutlined } from "@ant-design/icons";
 
+
 let isFirst = true;
 const Home=()=> {
 
@@ -39,16 +40,22 @@ const [b,b2]=useState(true)
     b2(prev => !prev)}
 
 
+ const onRemove = (id) => {
+    dispatch(orderActions.removeTodo(id));
+  };
+
+
   return (
     <div className="">
       <header className="App-header">
-        <h1 style={{margin:"0px",width:""}}>Wellcome to our mini-restaurant </h1>
+        <h1 style={{margin:"0px 30px 0px 210px",width:""}}>Wellcome to our mini-restaurant page</h1>
+        
         <div className="orderlist"><Link to="/orderlist">
           
           <h1 style={{margin:"0px 30px 0px 0px"}}>
-            <FileProtectOutlined style={{color: "#ffffff"}}/>
+            <FileProtectOutlined style={{color: "#5a5a5a"}}/>
           </h1>
-          </Link> <p style={{margin:"0px 30px 0px 0px"}}>Orderlist</p>
+          </Link> <p style={{margin:"0px 50px 0px 0px"}}>Orderlist</p>
           </div>
        
       </header>
@@ -62,9 +69,8 @@ const [b,b2]=useState(true)
               {/* <p>{food.category}</p> */}
               <p>{food.price} ID</p>
               <button onClick={() => {onAdd(food.name);added();}}>
-                {b?<b>Add to list</b>:<b style={{color:"blue"}}>Added</b>}
-              </button>
-              
+                {b?<b>Add to list</b>:<b style={{color:"#00d9ff"}}>Added</b>}
+              </button> 
             </div>);})}
             
           </div>

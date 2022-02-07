@@ -62,7 +62,7 @@ const increseBy = () => {
 <header className="App-header">
         <div className="home"><Link to="/">
           <h1 style={{margin:"0px"}}>
-            <LeftSquareOutlined style={{color: "#ffffff",margin:"60px 30px 0px 30px"}}/>
+            <LeftSquareOutlined style={{color: "#5a5a5a",margin:"60px 30px 0px 30px"}}/>
           </h1>
           </Link>
           </div>
