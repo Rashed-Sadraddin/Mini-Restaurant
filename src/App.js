@@ -11,9 +11,12 @@ function App() {
 
 
 
-const [themeState, setThemeState] = useState("light");
+const [themeState, setThemeState] = useState( localStorage.getItem('theme') || "light");
 function toggleTheme() {
-  setThemeState((prev) => (prev === "light" ? "dark" : "light"));
+  setThemeState((prev) => {
+    localStorage.setItem("theme", prev === "light" ? "dark" : "light")
+    return prev === "light" ? "dark" : "light"
+  });
   
     // const chosenMode = !themeState;
     // setThemeState(chosenMode);

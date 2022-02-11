@@ -9,6 +9,7 @@ import { LeftSquareOutlined } from "@ant-design/icons";
 
 let isFirst = true;
 function Orderlist() {
+  const [total, setTotal] = useState(0)
 
   const orders = useSelector((state) => state.order.orders);
   const dispatch = useDispatch();
@@ -22,6 +23,11 @@ function Orderlist() {
   };
 
    useEffect(() => {
+    const reducer = (total, element) => total + (element);
+
+    const ordersArry = orders ? orders.map(el => el.quantity*el.price) : [];
+    
+    ordersArry.length>0 ? setTotal(ordersArry.reduce(reducer)) : console.log('no orders');
      if (!isFirst) {
        fetch(
          "https://mini-restaurant-29088-default-rtdb.firebaseio.com/m.json",
@@ -30,6 +36,7 @@ function Orderlist() {
            body: JSON.stringify(orders),
          }
        );
+
      }
      isFirst = false;
    }, [orders]);
@@ -46,11 +53,11 @@ function Orderlist() {
 
 
 const counter = useSelector((state) => state.a.counter2);
-const increment = () => {
-  dispatch(counterActions2.inc());
+const increment = (id) => {
+  dispatch(orderActions.incQ(id));
 };
-const increseBy = () => {
-  dispatch(counterActions2.increseby(10));
+const decrease = (id) => {
+  dispatch(orderActions.decQ(id));
 };
  
 
@@ -73,20 +80,20 @@ const increseBy = () => {
             <div
               key={order.id} style={{margin: "10px",background: "#68b6ff",borderRadius: "10px",display: "flex",flexDirection: "row",alignItems: "center",justifyContent: "space-between",padding: "10px",}}
             >
-              <h2>{order.image}</h2>
+              <h2>{order.text}</h2>
               
            <div>
               
-         <p>Quantity-({counter})</p>
-          <button onClick={increment}>Increse</button>
-          <button onClick={increseBy}>Decrese</button>
+         <p>Quantity-({order.quantity})</p>
+          <button onClick={()=>{increment(order.id)}}>Increse</button>
+          <button onClick={()=>{decrease(order.id)}}>Decrese</button>
           <button onClick={() => {onRemove(order.id);}}>Delete</button>
           </div>
           </div>
           );})}
            </div>
            <p>Total price</p>
-           <p> {counter} ID</p>
+           <p> {total} ID</p>
            </div>
   );
 }

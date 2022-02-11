@@ -35,15 +35,23 @@ const Home=()=> {
   }, [orders]);
 
 
-const [b,b2]=useState(true)
- const added=()=>{
-    b2(prev => !prev)}
+const [b,b2]=useState([])
+ const added=(idd)=>{
+    b2(prev =>[...prev, idd])
+  }
 
+  const remove = (idd)=>{
+    b2(prev => prev.filter(el => el.id !== idd))
+  }
 
  const onRemove = (id) => {
     dispatch(orderActions.removeTodo(id));
   };
 
+  // const [f, setf] = useState(true);
+  // const Tab = () => {
+  //   setf((prev) => !prev);
+  // };
 
   return (
     <div className="">
@@ -62,15 +70,23 @@ const [b,b2]=useState(true)
  
       <div className="all_foods">{Foods.map((food) => {
           return (
-            <div className="food_card">
+            <div className="food_card" key={food.id}>
             
-              <img className="images"  src={food.image}/>
+              <img className="images"  src={food.image} alt={food.name}/>
               <h3>{food.name}</h3>
               {/* <p>{food.category}</p> */}
               <p>{food.price} ID</p>
-              <button onClick={() => {onAdd(food.name);added();}}>
-                {b?<b>Add to list</b>:<b style={{color:"#00d9ff"}}>Added</b>}
-              </button> 
+
+                
+
+                {!b.find(el => el === food.id)  && <button onClick={() => {onAdd(food);added(food.id);}}>Add to list</button>}
+                {b.find(el => el === food.id) &&<button onClick={() => {onRemove(food.id)}} style={{color:"#00d9ff"}}>Added</button>}
+                   
+                {/* <button onClick={()=>{Tab();}}>
+                  {f?<h2>{!b.find(el => el === food.id)  && <button onClick={() => {onAdd(food);added(food.id);}}>Add to list</button>}</h2> :
+                <h2>{b.find(el => el === food.id) &&<button onClick={() => {onRemove(food.id)}} style={{color:"#00d9ff"}}>Added</button>}</h2>}
+                </button> */}
+                
             </div>);})}
             
           </div>
