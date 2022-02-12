@@ -44,20 +44,12 @@ const [b,b2]=useState([])
     dispatch(orderActions.addorder(txt));
   };
   
-  // const [f, setf] = useState(true);
+  // const [f, setf] = useState(JSON.parse(localStorage.getItem("press"))||false);
   // const Tab = () => {
-  //   setf((prev) => !prev);
+  //   const press=!f
+  //   setf(press);
+  //   localStorage.setItem("press",press)
   // };
-
-
-// const [f, setf] = useState(localStorage.getItem("tab") || true);
-// function Tab() {
-//   setf((prev) => {
-//     localStorage.setItem("tab", prev === true ? false : true);
-//     return prev === true ? false : true;
-//   });
-// };
-
 
 
 
@@ -85,13 +77,12 @@ const [b,b2]=useState([])
               <p style={{margin:"3px"}}>{food.category}</p>
               <b style={{margin:"3px"}}>{food.price} ID</b>
 
-                
-
+              
                 {!b.find(el => el === food.id)  && <button onClick={() => {onAdd(food);added(food.id);}}>Add to list</button>}
                 {/* {b.find(el => el === food.id) &&<button onClick={() => {onRemove(food.id)}} style={{color:"#00d9ff"}}>Added</button>} */}
                    
                  <button onClick={() => {onRemove(food.id);added(food.id);}} style={{color:"#00d9ff"}}>Remove</button>
-
+                  
 
                 {/* <button onClick={()=>{Tab();}}>
                   {f?<h2>{!b.find(el => el === food.id)  && <button onClick={() => {onAdd(food);added(food.id);}}>Add to list</button>}</h2> :
