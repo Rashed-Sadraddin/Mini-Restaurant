@@ -78,3 +78,7 @@
 .orderlist {
     float: right;
 }
+
+div {
+    border: 1px solid blu;
+}

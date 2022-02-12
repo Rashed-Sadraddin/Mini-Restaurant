@@ -17,10 +17,6 @@ function toggleTheme() {
     localStorage.setItem("theme", prev === "light" ? "dark" : "light")
     return prev === "light" ? "dark" : "light"
   });
-  
-    // const chosenMode = !themeState;
-    // setThemeState(chosenMode);
-    // localStorage.setItem("dark", chosenMode);
   };
 
 

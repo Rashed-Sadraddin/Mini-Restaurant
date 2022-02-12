@@ -8,7 +8,7 @@ const a = useContext(Mode);
 // const { theme2, themeToggler2 } = useContext(ThemeContext);
 
 const cl = `${classes.header} ${a.theme2 == "light" ? null : classes.dark}`;
-const cl2 = `${a.theme2 === "light" ? "change to mode" : "change to mode"}`;
+const cl2 = `${a.theme2 === "light" ? "change mode" : "change mode"}`;
 
 
     return (

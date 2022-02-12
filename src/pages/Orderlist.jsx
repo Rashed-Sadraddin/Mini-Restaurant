@@ -64,25 +64,32 @@ const decrease = (id) => {
 
 
   return (
-    <div className="">
+    <div style={{width:"95%"}}>
 
 <header className="App-header">
+ 
         <div className="home"><Link to="/">
           <h1 style={{margin:"0px"}}>
             <LeftSquareOutlined style={{color: "#5a5a5a",margin:"60px 30px 0px 30px"}}/>
+
           </h1>
+          
           </Link>
+          
           </div>
       </header>
-      <div>
+      <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
         {orders.map((order) => {
           return (
             <div
-              key={order.id} style={{margin: "10px",background: "#68b6ff",borderRadius: "10px",display: "flex",flexDirection: "row",alignItems: "center",justifyContent: "space-between",padding: "10px",}}
+              key={order.id} style={{width:"90%",margin: "10px",background: "#68b6ff",borderRadius: "10px",display: "flex",flexDirection: "row",alignItems: "center",justifyContent: "space-between",padding: "0px",}}
             >
+              <img src={order.image} style={{height:"100%",width:"20%",margin:"0px",borderRadius: "10px 0px 0px 10px"}}></img>
               <h2>{order.text}</h2>
+              <h4>{order.price} ID</h4>
               
-           <div>
+              
+           <div style={{padding:"2%"}}>
               
          <p>Quantity-({order.quantity})</p>
           <button onClick={()=>{increment(order.id)}}>Increse</button>
@@ -92,8 +99,10 @@ const decrease = (id) => {
           </div>
           );})}
            </div>
-           <p>Total price</p>
-           <p> {total} ID</p>
+           <div style={{border:"1px solid black",width:"240px",background:"white",margin:"15px 0px 15px 5%"}}>
+            <h2 style={{color:"black",justifyContent:"",margin:"15px"}}>Total price</h2>
+           <h3  style={{color:"black",margin:"15px"}}> {total} ID</h3>
+           </div>
            </div>
   );
 }
